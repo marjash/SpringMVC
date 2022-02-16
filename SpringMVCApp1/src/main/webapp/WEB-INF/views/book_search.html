@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Book search</title>
+</head>
+<body>
+<!--<form th:action="@{/books/search}" method="get">-->
+<!--    <label for="title">Book Title</label>:-->
+<!--    <input type="text" id="title" name="title" autofocus="autofocus"> <br />-->
+<!--    <input type="submit" value="Search" />-->
+<!--</form>-->
+
+<h1>Search page</h1>
+<form th:action="@{|/books/search/|}" th:object="${book}" method="get">
+<!--    <p>Book title: <input type="text" th:field="*{bookTitle}" id="title"/></p>-->
+    <p><input type="text" th:field="*{bookTitle}" name="search" placeholder="search"/>
+        <button type="submit" class="btn btn-info" >Search</button>
+</form>
+</body>
+</html>

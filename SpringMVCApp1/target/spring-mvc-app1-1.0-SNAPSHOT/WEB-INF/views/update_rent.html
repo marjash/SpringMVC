@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update User</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="header">
+    <a href="/users/all">users</a> |
+    <a href="/rent/all">rents</a> |
+</div>
+
+<div class="col-md-offset-2">
+
+    <h2>Update rent(return book to library)</h2>
+
+    <div>
+        <form method="post" th:object="${rent}">
+            <h2 th:text="*{id}"></h2>
+            <h3 th:text="${rent.book.getBookTitle()}"></h3>
+            <h3 th:text="${rent.user.getName()}"></h3>
+
+            <div class="col-sm-offset-2 col-sm-8">
+                <input class="btn btn-info" type="submit" value="Return"/>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

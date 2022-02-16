@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New User registration</title>
+</head>
+<body>
+<div class="header">
+
+</div>
+
+    <div layout:fragment="content" style="margin: 0 auto; width: max-content">
+        <h2>New User registration</h2>
+        <form th:action="@{/users/create}" th:object="${user}" method="post">
+            <table>
+                <tr>
+                    <td>
+                        <label for="first-name">First name:</label>
+                    </td>
+                    <td>
+                        <input type="text" th:field="*{name}" id="first-name" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="last-name">Last name:</label>
+                    </td>
+                    <td>
+                        <input type="text" th:field="*{surname}" id="last-name" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="age">Age:</label>
+                    </td>
+                    <td>
+                        <input type="text" th:field="*{age}" id="age" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="email">E-mail:</label>
+                    </td>
+                    <td>
+                        <input type="email" th:field="*{email}" id="email" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="password">Password:</label>
+                    </td>
+                    <td>
+                        <input type="password" th:field="*{password}" id="password" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" value="Register" />
+                        <input type="reset" value="Clear" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

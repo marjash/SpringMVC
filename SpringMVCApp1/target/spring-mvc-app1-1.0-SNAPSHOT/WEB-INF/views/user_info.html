@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Info about User</title>
+</head>
+<body>
+<div class="header">
+    <a href="/">home</a> |
+    <a href="/admin/rents/all">rents</a> |
+    <a href="/books/all">books</a> |
+    <a href="/admin/users/all">readers</a>
+</div>
+<div class="header">
+
+</div>
+
+<div layout:fragment="content" style="margin: 0 auto; width: max-content">
+    <h2>Info about User</h2>
+    <table>
+        <tr>
+            <td>First name:</td>
+            <td>
+                <b th:text="${user.name}"></b>
+            </td>
+        </tr>
+        <tr>
+            <td>Last name</td>
+            <td>
+                <b th:text="${user.surname}"></b>
+            </td>
+        </tr>
+        <tr>
+            <td>Books has read</td>
+            <td>
+            <span th:each="rent :${rents}">
+                <span th:if="${rent.getTimeReturned() != null}">
+                    <b th:text="${rent.book.bookTitle}"></b>
+                </span>
+            </span>
+            </td>
+        </tr>
+        <tr>
+            <td>Books are reading</td>
+            <td>
+            <span th:each="rent :${rents}">
+                <span th:if="${rent.getTimeReturned() == null}">
+                    <b th:text="${rent.book.bookTitle}"></b>
+                </span>
+            </span>
+            </td>
+        </tr>
+        <tr>
+            <td>Our client for</td>
+            <td>
+                <b th:text="${period.getYears() + ' years ' + period.getMonths() + ' months ' + period.getDays() + ' days '}"></b>
+            </td>
+        </tr>
+
+    </table>
+<!--    <div>-->
+<!--        <a th:href="@{|/users/${user.id}/update|}">Edit</a> |-->
+<!--        <a th:href="@{|/users/${user.id}/delete|}">Remove</a>-->
+<!--    </div>-->
+</div>
+</body>
+</html>

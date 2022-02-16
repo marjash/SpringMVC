@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Request</title>
+</head>
+<body>
+<a href="/">home</a>
+<a th:href="@{|/user/${id}/rent|}">rents</a>
+<a th:href="@{|/user/${id}/statistic|}">statistic</a>
+<a th:href="@{|/books/all/|}">books</a>
+
+<div layout:fragment="content" style="margin: 0 auto; width: max-content">
+    <form th:action="@{|/user/${id}/create/request|}" th:object="${request}" method="post">
+        <h3>Choose a book</h3>
+        <table>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="book">Book:</label>
+                <div class="col-sm-8">
+                    <select class="form-control" id="book" name="bookId">
+                        <span th:each="book : ${books}">
+<!--                            <option th:if="${book.id == book.role.id}" th:selected="${true}" th:text="${book.bookTitle.substring(0, 1) + book.bookTitle.substring(1).toLowerCase()}"-->
+                            <!--                                    th:value="${book.id}"></option>-->
+
+                            <option th:if="${book.amountLeft > 0}" th:text="${book.bookTitle.substring(0, 1) + book.bookTitle.substring(1).toLowerCase()}"
+                                    th:value="${book.id}"></option>
+                        </span>
+                    </select>
+                </div>
+            </div>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Create new request" />
+                    <input type="reset" value="Clear" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

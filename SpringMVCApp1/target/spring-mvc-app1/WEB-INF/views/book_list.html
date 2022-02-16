@@ -1,0 +1,58 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org"-->
+<!--      lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>List of Users</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="header">-->
+<!--    <a href="/users/all">users</a> |-->
+<!--    <a href="/rent/all">rents</a> |-->
+<!--</div>-->
+
+<!--<div style="margin: 0 auto; width: max-content">-->
+<!--    <h2>List of Books</h2>-->
+<!--    <form th:action="@{/books/create}" method="get">-->
+<!--        <input type="submit" value="Create new Book">-->
+<!--    </form>-->
+<!--    <br>-->
+<!--    <table border="1">-->
+<!--        <tr>-->
+<!--            <th>Num.</th>-->
+<!--            <th>Id</th>-->
+<!--            <th>Book title</th>-->
+<!--            <th>Amount left</th>-->
+<!--            <th>Amount gave</th>-->
+<!--            <th>Rating</th>-->
+<!--        </tr>-->
+<!--        <tr th:each="book, iStat: ${books}">-->
+<!--            <td>-->
+<!--                <p th:text="${iStat.index + 1}"></p>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--                <p th:text="${book.id}"></p>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--                <a th:href="@{|/books/${book.id}/read|}" th:text="${book.bookTitle}"></a>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--                <p th:text="${book.amountLeft}"></p>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--                <p th:text="${book.amountGave}"></p>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--                <p th:text="${book.rating}"></p>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--                <a th:href="@{|/books/${book.id}/update|}">Edit</a>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--                <a th:href="@{|/books/${book.id}/delete|}">Remove</a>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--    </table>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->

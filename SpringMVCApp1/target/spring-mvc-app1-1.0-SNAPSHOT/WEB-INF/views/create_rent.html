@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Rent</title>
+</head>
+<body>
+<div class="header">
+    <a href="admin/users/all">users</a> |
+    <a href="/admin/rents/all">rents</a> |
+</div>
+
+<div layout:fragment="content" style="margin: 0 auto; width: max-content">
+    <form th:action="@{/admin/rents/create}" th:object="${rent}" method="post">
+        <h3>Time taken is now</h3>
+        <h3>Time should be returned is 2 month from now</h3>
+        <table>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="user">User:</label>
+                <div class="col-sm-8">
+                    <select class="form-control" id="user" name="userId">
+                        <span th:each="user : ${users}">
+<!--                            <option th:if="${user.id == user.role.id}" th:selected="${true}" th:text="${user.name.substring(0, 1) + user.name.substring(1).toLowerCase()}"-->
+<!--                                    th:value="${user.id}"></option>-->
+                            <option th:text="${user.surname + ' ' + user.name}"
+                                    th:value="${user.id}"></option>
+                        </span>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="book">Book:</label>
+                <div class="col-sm-8">
+                    <select class="form-control" id="book" name="bookId">
+                        <span th:each="book : ${books}">
+<!--                            <option th:if="${book.id == book.role.id}" th:selected="${true}" th:text="${book.bookTitle.substring(0, 1) + book.bookTitle.substring(1).toLowerCase()}"-->
+<!--                                    th:value="${book.id}"></option>-->
+
+                            <option th:if="${book.amountLeft > 0}" th:text="${book.bookTitle.substring(0, 1) + book.bookTitle.substring(1).toLowerCase()}"
+                                    th:value="${book.id}"></option>
+                        </span>
+                    </select>
+                </div>
+            </div>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Create new rent" />
+                    <input type="reset" value="Clear" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

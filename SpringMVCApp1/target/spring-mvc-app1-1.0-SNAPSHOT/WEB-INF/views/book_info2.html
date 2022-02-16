@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.w3.org/1999/xhtml"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Info about Book</title>
+</head>
+<body>
+<div class="header">
+    <a href="/">home</a> |
+    <a sec:authorize="hasRole('ROLE_ADMIN')" href="/admin/rents/all">rents</a> |
+    <a href="/books/all">books</a> |
+    <a sec:authorize="hasRole('ROLE_ADMIN')" href="/admin/users/all">readers</a>
+</div>
+
+<div layout:fragment="content" style="margin: 0 auto; width: max-content">
+    <h2>Info about Book</h2>
+    <table>
+        <tr>
+            <td>Title:</td>
+            <td>
+                <b th:text="${book.getBook().bookTitle}"></b>
+            </td>
+        </tr>
+        <td>Main author:</td>
+        <td>
+            <b th:text="${book.getAuthor().authorName + ' ' + book.getAuthor().authorSurname}"></b>
+        </td>
+        </tr>
+        <tr>
+        </tr>
+        <tr>
+            <td>Amount left</td>
+            <td>
+                <b th:text="${book.getBook().amountLeft}"></b>
+            </td>
+        </tr>
+        <tr>
+            <td>Amount gave</td>
+            <td>
+                <b th:text="${book.getBook().amountGave}"></b>
+            </td>
+        </tr>
+        <tr>
+            <td>Status</td>
+            <td>
+                <b th:if="${book.getBook().amountLeft} > 0">Available</b>
+                <b th:if="${book.getBook().amountLeft} < 0">Unavailable</b>
+            </td>
+        </tr>
+        <tr>
+            <td>Average time of reading</td>
+            <td >
+                <b th:text="${avg + ' ' + 'days'}"></b>
+            </td>
+        </tr>
+
+    </table>
+</div>
+</body>
+</html>

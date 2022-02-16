@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Info about User</title>
+</head>
+<body>
+<div class="header">
+    <a href="/admin/users/all">users</a> |
+    <a href="/admin/rents/all">rents</a> |
+</div>
+
+<div layout:fragment="content" style="margin: 0 auto; width: max-content">
+    <h2>Info about rent</h2>
+    <table>
+        <tr>
+            <td>Id: </td>
+            <td>
+                <b th:text="${rent.id}"></b>
+            </td>
+        </tr>
+        <tr>
+            <td>Book:</td>
+            <td>
+                <p>Id: <span th:text="${rent.book.getId()}"></span></p>
+                <p>Name: <span th:text="${rent.book.getBookTitle()}"></span></p>
+            </td>
+        </tr>
+        <tr>
+            <td>User</td>
+            <td>
+                <p>Id: <span th:text="${rent.user.getId()}"></span></p>
+                <p>Name: <span th:text="${rent.user.getName()}"></span></p>
+
+            </td>
+        </tr>
+    </table>
+    <div>
+        <a th:href="@{|/admin/rents/${rent.id}/return|}">Edit</a> |
+        <a th:href="@{|/admin/rents/${rent.id}/delete|}">Remove</a>
+    </div>
+</div>
+</body>
+</html>

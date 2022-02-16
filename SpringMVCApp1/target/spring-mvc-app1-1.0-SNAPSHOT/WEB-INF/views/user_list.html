@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta charset="ISO-8859-1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>List of Readers</title>
+</head>
+<body>
+<div class="header">
+    <a href="/">home</a> |
+    <a href="/admin/rents/all">rents</a> |
+    <a href="/books/all">books</a>
+</div>
+
+<div class="container mt-5">
+    <h2 align="center">List of Readers</h2>
+    <a th:href="@{|/admin/users/statistic|}"
+       class="btn btn-outline-info">Readers statistic</a>
+    <a th:href="@{|/admin/users/debtors|}"
+       class="btn btn-outline-danger">Debtors</a>
+    <br>
+    <table class="table table-bordered table-sm mt-2">
+        <thead>
+        <tr>
+            <th>Num</th>
+            <th>Full name</th>
+            <th>E-mail</th>
+            <th colspan="2">Operations</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user, iStat: ${users}">
+            <td th:text="${iStat.index + 1}"></td>
+            <td>
+                <a th:href="@{|/admin/users/${user.id}/read/|}" th:text="${user.name + ' ' + user.surname}"></a>
+            </td>
+            <td th:text="${user.email}"></td>
+
+<!--            <td>-->
+<!--                <a th:href="@{|/users/${user.id}/update|}">Edit</a>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--                <a th:href="@{|/users/${user.id}/delete|}">Remove</a>-->
+<!--            </td>-->
+            <td>
+                <a th:href="@{|/admin/email/${user.id}/|}"
+                   class="btn btn-secondary">Send email</a>
+            </td>
+        </tr>
+    </table>
+    <a th:href="@{|/admin/email/all/|}"
+         class="btn btn-secondary">Send email to all</a>
+</div>
+</body>
+</html>

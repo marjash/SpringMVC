@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta charset="ISO-8859-1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>List of rents</title>
+</head>
+<body>
+<div class="header">
+    <a href="/">home</a> |
+    <a href="/admin/users/all">readers</a> |
+    <a href="/books/all">books</a> |
+</div>
+
+<div style="margin: 0 auto; width: max-content">
+    <h2 align="center">List of rents</h2>
+    <form th:action="@{/admin/rents/create}" method="get">
+        <input type="submit" value="Create new Rent">
+    </form>
+    <br>
+    <table class="table table-bordered table-sm mt-2">
+        <thead>
+        <tr>
+            <th>Number</th>
+            <th>Book title</th>
+            <th>User name</th>
+            <th>Time taken</th>
+            <th>Time should be returned</th>
+            <th>Time returned</th>
+            <th>Operations</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="rent, iStat: ${rents}">
+            <td th:text="${iStat.index + 1}"></td>
+<!--            <td th:href="@{|/rent/${rent.id}/read|}" th:text="${rent.id}"></td>-->
+            <td th:text="${rent.book.bookTitle}"></td>
+            <td th:text="${rent.user.name + ' ' + rent.user.surname}"></td>
+            <td th:text="${rent.getTimeTaken()}"></td>
+            <td th:text="${rent.getTimeShouldBeReturned()}"></td>
+            <td th:text="${rent.getTimeReturned()}"></td>
+            <td>
+<!--                <a th:href="@{|/admin/rents/${rent.id}/return|}"-->
+<!--                    class="btn btn-primary">Update</a>-->
+                <a th:href="@{|/admin/rents/${rent.id}/delete|}"
+                    class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

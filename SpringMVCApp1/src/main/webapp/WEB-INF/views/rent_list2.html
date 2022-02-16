@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"
+      lang="en">
+<head>
+    <meta charset="ISO-8859-1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Books statistic</title>
+</head>
+<body>
+<div class="header">
+    <a href="/">home</a> |
+    <a href="/books/all">books</a>
+    <div sec:authorize="hasRole('ROLE_ADMIN')">
+        <a href="/admin/rents/all">rents</a> |
+        <a href="/admin/users/all">readers</a>
+    </div>
+</div>
+
+<div style="margin: 0 auto; width: max-content">
+    <h2 align="center">Books statistic</h2>
+    <h3 th:align="center" th:text="${dateStart}"></h3>
+    <h3 th:align="center" th:text="${dateEnd}"></h3>
+    <br>
+    <table class="table table-bordered table-sm mt-2">
+            <tr>
+                <td>Most popular</td>
+                <td>
+                    <b th:text="${rent.book.bookTitle}"></b>
+                </td>
+            </tr>
+        <tr>
+            <td>Most unpopular</td>
+            <td>
+                <b th:text="${rent2.book.bookTitle}"></b>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
